@@ -91,6 +91,7 @@ bool Board::move(Piece piece, Cell to) {
 		return false;
 	piece.getCurrentCell().setRank(0);
 	piece.getCurrentCell().setFile(0);
+
 	piece.setCurrentCell(to);
 	return true;
 }

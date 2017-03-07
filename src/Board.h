@@ -16,7 +16,9 @@ private:
 public:
 	Board();
 	bool move(Piece piece, Cell to);
+	bool isValidCell(Cell cell);
 	bool capture(Piece peice);
+
 };
 
 #endif /* INCLUDE_BOARD_H_ */
