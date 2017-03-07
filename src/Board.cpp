@@ -9,7 +9,7 @@
 #include "Piece.h"
 #include "Pawn.h"
 #include "Rook.h"
-#include"Knight.h"
+#include "Knight.h"
 #include "Bishop.h"
 #include "King.h"
 #include "Queen.h"
@@ -84,6 +84,16 @@ Board::Board() {
 	pieces[BLACK_QUEEN] = new Queen;
 	pieces[WHITE_QUEEN] = new Queen;
 
+	for (int i = 0; i < N; ++i) {
+		for (int j = 0; j < N; ++j) {
+			cells[i][j].setRank(i);
+			cells[i][j].setFile(j + 'a');
+		}
+	}
+}
+
+Piece* Board::getPieces() {
+	return pieces;
 }
 
 bool Board::move(Piece piece, Cell to) {

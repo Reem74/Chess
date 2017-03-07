@@ -13,11 +13,15 @@
 
 class Board {
 private:
-	Piece* pieces[32];
+	const int N = 8;
+	Piece* pieces[N * N];
+	Cell cells[N][N];
 public:
 	Board();
+	Piece* getPieces();
 	bool move(Piece piece, Cell to);
 	bool capture(Piece peice);
+
 };
 
 #endif /* BOARD_H_ */

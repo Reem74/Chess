@@ -7,6 +7,7 @@
 
 #ifndef PIECES_H_
 #define PIECES_H_
+
 #include "Cell.h"
 
 class Piece {

@@ -12,12 +12,14 @@ class Cell {
 private:
 	int rank;
 	char file;
+	Piece *piece;
 public:
 	void setRank(int r);
 	void setFile(char f);
+	void setPiece(Piece *p);
 	int getRank();
 	char getFile();
-
+	Piece* getPiece();
 };
 
 #endif /* CELL_H_ */
