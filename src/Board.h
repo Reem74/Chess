@@ -8,7 +8,9 @@
 #ifndef INCLUDE_BOARD_H_
 #define INCLUDE_BOARD_H_
 
+class Board {
 
+};
 
 
 
