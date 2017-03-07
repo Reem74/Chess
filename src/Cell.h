@@ -8,6 +8,8 @@
 #ifndef CELL_H_
 #define CELL_H_
 
+class Piece;
+
 class Cell {
 private:
 	int rank;
