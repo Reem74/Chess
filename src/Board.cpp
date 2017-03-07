@@ -15,6 +15,7 @@
 #include "Queen.h"
 #include "Color.h"
 
+
 enum {
 	BLACK_PAWN1,
 	BLACK_PAWN2,
@@ -103,7 +104,10 @@ Piece** Board::getPieces() {
 }
 
 bool Board::move(Piece *piece, Cell *to) {
-	if (!piece->isValid(to)) {
+	if (!isCaptured(piece) || isValidCell(to) || piece->isValidMove(to)) {
+		return false;
+	}
+	if (capture(piece, to)) {
 		return false;
 	}
 	piece->getCurrentCell()->setRank(0);
@@ -111,13 +115,36 @@ bool Board::move(Piece *piece, Cell *to) {
 	piece->setCurrentCell(to);
 	return true;
 }
+
+bool Board::capture(Piece *piece, Cell *to) {
+	if (isSameColor(piece->getColor(), to->getPiece()->getColor())) {
+		return false;
+	}
+	for (int i = 0; i < N * N; i++) {
+		if (pieces[i] == piece) {
+			piece->getCurrentCell()->setPiece(0);
+			piece->setCurrentCell(0);
+		}
+	}
+	return true;
+}
+
+bool Board::isSameColor(Color color1, Color color2) {
+	return color1 == color2;
+}
+
+bool Board::isCaptured(Piece *piece) {
+	if (piece->getCurrentCell() == 0)
+		return true;
+	return false;
+}
+
 bool Board::isValidCell(Cell *cell) {
-	int N = 8;
 	for (int i = 0; i < N; i++) {
 		for (int j = 0; j < N; j++) {
-		if(cell == cells[i][j])
-		return truel
+			if (cell == cells[i][j])
+				return true;
+		}
 	}
-}
-return false;
+	return false;
 }

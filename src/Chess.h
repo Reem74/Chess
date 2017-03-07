@@ -8,10 +8,7 @@
 #define GAME_H_
 
 #include "Board.h"
-
-enum Color {
-	WHITE, BLACK
-};
+#include "Color.h"
 
 class Chess {
 private:

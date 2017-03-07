@@ -1,4 +1,5 @@
 #include "Cell.h"
+#include "Piece.h"
 
 void Cell::setRank(int r) {
 	rank = r;

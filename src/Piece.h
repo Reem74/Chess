@@ -11,6 +11,8 @@
 #include "Cell.h"
 #include "Color.h"
 
+class Cell;
+
 class Piece {
 private:
 	Cell *current_cell;
@@ -18,10 +20,11 @@ private:
 public:
 	Piece();
 	Piece(Cell *cell, Color color);
-	bool isValid(Cell to);
-	void setCurrentCell(Cell cell);
+	void setCurrentCell(Cell *cell);
+	void setColor(Color color);
+	Color getColor();
 	Cell* getCurrentCell();
-	bool isValidMove(Cell cell);
+	bool isValidMove(Cell *cell);
 };
 
 #endif /* PIECE_H_ */
