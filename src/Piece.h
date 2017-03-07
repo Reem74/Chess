@@ -12,11 +12,12 @@
 
 class Piece {
 private:
-	Cell current_cell;
+	Cell *current_cell;
 public:
 	bool isValid(Cell to);
 	void setCurrentCell(Cell cell);
-	Cell getCurrentCell();
+	Cell* getCurrentCell();
+	bool isValidMove(Cell cell);
 };
 
 #endif /* PIECE_H_ */

@@ -20,6 +20,7 @@ public:
 	Board();
 	Piece* getPieces();
 	bool move(Piece piece, Cell to);
+	bool isValidCell(Cell *cell);
 	bool capture(Piece peice);
 
 };
