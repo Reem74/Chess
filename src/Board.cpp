@@ -86,12 +86,21 @@ Board::Board() {
 
 }
 
-bool Board::move(Piece piece, Cell to) {
-	if (!piece.isValid(to))
+bool Board::move(Piece *piece, Cell *to) {
+	if (!piece->isValid(to))
 		return false;
-	piece.getCurrentCell().setRank(0);
-	piece.getCurrentCell().setFile(0);
-
-	piece.setCurrentCell(to);
+	piece->getCurrentCell()->setRank(0);
+	piece->getCurrentCell()->setFile(0);
+	piece->setCurrentCell(to);
 	return true;
+}
+bool Board::isValidCell(Cell *cell) {
+	int N = 8;
+	for (int i = 0; i < N; i++) {
+		for (int j = 0; j < N; j++) {
+		if(cell == cells[i][j])
+		return truel
+	}
+}
+return false;
 }
