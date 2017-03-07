@@ -9,7 +9,6 @@
 
 #include <iostream>
 
-
 Chess::Chess() {
 	board = new Board;
 	current_color = WHITE;
@@ -22,7 +21,9 @@ Chess::~Chess() {
 void Chess::play() {
 	bool checkmate = false;
 	while (!checkmate) {
-		makeMove();
+		if (makeMove()) {
+
+		}
 		switchColor();
 	}
 }

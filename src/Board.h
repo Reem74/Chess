@@ -15,10 +15,10 @@ class Board {
 private:
 	const int N = 8;
 	Piece* pieces[N * N];
-	Cell cells[N][N];
+	Cell* cells[N][N];
 public:
 	Board();
-	Piece* getPieces();
+	Piece** getPieces();
 	bool move(Piece piece, Cell to);
 	bool isValidCell(Cell *cell);
 	bool capture(Piece peice);
