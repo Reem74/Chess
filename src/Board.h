@@ -5,8 +5,8 @@
  *      Author: reem
  */
 
-#ifndef INCLUDE_BOARD_H_
-#define INCLUDE_BOARD_H_
+#ifndef BOARD_H_
+#define BOARD_H_
 
 class Board {
 
@@ -14,4 +14,4 @@ class Board {
 
 
 
-#endif /* INCLUDE_BOARD_H_ */
+#endif /* BOARD_H_ */

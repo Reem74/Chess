@@ -1,7 +1,7 @@
 #include <iostream>
-#include "Game.h"
+#include "Chess.h"
 
-using namespace std;
 int main() {
-
+	Chess chess;
+	chess.play();
 }
