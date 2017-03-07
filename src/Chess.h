@@ -4,8 +4,8 @@
  *      Author: mahmoud
  */
 
-#ifndef INCLUDE_GAME_H_
-#define INCLUDE_GAME_H_
+#ifndef GAME_H_
+#define GAME_H_
 
 #include "Board.h"
 
@@ -13,14 +13,18 @@ enum Color {
 	WHITE, BLACK
 };
 
-class Game {
+class Chess {
 private:
 	Board* board;
 	Color current_color;
+
+	void switchColor();
+	void makeMove();
+	void printBoard();
 public:
-	Game();
-	int play();
-	~Game();
+	Chess();
+	~Chess();
+	void play();
 };
 
-#endif /* INCLUDE_GAME_H_ */
+#endif /* GAME_H_ */
