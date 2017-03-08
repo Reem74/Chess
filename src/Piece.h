@@ -14,17 +14,17 @@
 class Cell;
 
 class Piece {
-private:
+protected:
 	Cell *current_cell;
 	Color color;
 public:
 	Piece();
-	Piece(Cell *cell, Color color);
+	virtual bool isValidMove(Cell *cell) = 0; /// not here
 	void setCurrentCell(Cell *cell);
-	void setColor(Color color);
+	void setColor(Color c);
 	Color getColor();
 	Cell* getCurrentCell();
-	bool isValidMove(Cell *cell);
+
 };
 
 #endif /* PIECE_H_ */

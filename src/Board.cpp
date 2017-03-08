@@ -15,7 +15,6 @@
 #include "Queen.h"
 #include "Color.h"
 
-
 enum {
 	BLACK_PAWN1,
 	BLACK_PAWN2,
@@ -75,7 +74,6 @@ Board::Board() {
 	pieces[WHITE_ROOK2] = new Rook(cells[7][7], WHITE);
 	pieces[BLACK_ROOK1] = new Rook(cells[0][0], BLACK);
 	pieces[BLACK_ROOK2] = new Rook(cells[0][7], BLACK);
-
 
 	// knights
 	pieces[WHITE_KNIGHT1] = new Knight(cells[7][1], WHITE);

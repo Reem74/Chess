@@ -9,7 +9,13 @@
 #define QUEEN_H_
 
 class Queen: public Piece {
-
+private:
+	int directionOfRank[2] = { -1, -1 };
+	int directionOfFile[2] = { -1, 1 };
+public:
+	Queen();
+	Queen(Cell *cell, Color c);
+	bool isValidMove(Cell *cell);
 };
 
 #endif /* QUEEN_H_ */
