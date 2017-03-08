@@ -9,6 +9,6 @@
 #define COLOR_H_
 
 enum Color {
-	WHITE, BLACK
+	WHITE, BLACK, NULL
 };
 #endif /* COLOR_H_ */

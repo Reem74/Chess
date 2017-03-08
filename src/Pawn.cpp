@@ -9,7 +9,7 @@
 Pawn::Pawn() {
 	starting_cell = 0;
 	current_cell = 0;
-	color = 0;
+	color = NULL;
 }
 
 Pawn::Pawn(Cell *cell, Color c) {

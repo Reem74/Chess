@@ -9,7 +9,7 @@
 
 Bishop::Bishop() {
 	current_cell = 0;
-	color = 0;
+	color = NULL;
 }
 
 Bishop::Bishop(Cell *cell, Color c) {

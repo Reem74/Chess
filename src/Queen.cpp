@@ -9,7 +9,7 @@
 
 Queen::Queen() {
 	current_cell = 0;
-	color = 0;
+	color = NULL;
 }
 
 Queen::Queen(Cell *cell, Color c) {
@@ -17,7 +17,6 @@ Queen::Queen(Cell *cell, Color c) {
 	color = c;
 }
 bool Queen::isValidMove(Cell *cell) {
-
 
 	return false;
 }

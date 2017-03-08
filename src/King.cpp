@@ -8,7 +8,7 @@
 
 King::King() {
 	current_cell = 0;
-	color = 0;
+	color = NULL;
 }
 
 King::King(Cell *cell, Color c) {

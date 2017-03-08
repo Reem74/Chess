@@ -7,13 +7,14 @@
 
 #ifndef PAWN_H_
 #define PAWN_H_
-#include "Cell.h"
+
+#include "Piece.h"
 
 class Pawn: public Piece {
 private:
 	Cell *starting_cell;
 	int directionOfRank[2] = { -1, -1 };
-	int directionOfFile[2] = { -1, 1 } ;
+	int directionOfFile[2] = { -1, 1 };
 
 public:
 	Pawn();

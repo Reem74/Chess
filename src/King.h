@@ -8,6 +8,8 @@
 #ifndef KING_H_
 #define KING_H_
 
+#include "Piece.h"
+
 class King: public Piece {
 private:
 	int directionOfRank[2] = { -1, -1 };
