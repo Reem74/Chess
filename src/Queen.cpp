@@ -9,7 +9,7 @@
 
 Queen::Queen() {
 	current_cell = 0;
-	color = NULL;
+	color = NONE;
 }
 
 Queen::Queen(Cell *cell, Color c) {

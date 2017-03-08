@@ -12,8 +12,8 @@
 
 class Bishop: public Piece {
 private:
-	int directionOfRank[2] = { -1, -1 };
-	int directionOfFile[2] = { -1, 1 };
+	const int directionOfRank[2] = { -1, -1 };
+	const int directionOfFile[2] = { -1, 1 };
 public:
 	Bishop();
 	Bishop(Cell *cell, Color c);

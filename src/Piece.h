@@ -11,8 +11,6 @@
 #include "Cell.h"
 #include "Color.h"
 
-class Cell;
-
 class Piece {
 protected:
 	Cell *current_cell;
@@ -24,7 +22,7 @@ public:
 	void setColor(Color c);
 	Color getColor();
 	Cell* getCurrentCell();
-
+	virtual ~Piece();
 };
 
 #endif /* PIECE_H_ */

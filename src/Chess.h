@@ -1,4 +1,5 @@
 /*
+ * Chess.h
  *
  *  Created on: Mar 5, 2017
  *      Author: mahmoud
@@ -16,7 +17,7 @@ private:
 	Color current_color;
 
 	void switchColor();
-	void makeMove();
+	bool makeMove();
 	void printBoard();
 public:
 	Chess();

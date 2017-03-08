@@ -9,7 +9,7 @@
 
 Rook::Rook() {
 	current_cell = 0;
-	color = NULL;
+	color = NONE;
 }
 
 Rook::Rook(Cell *cell, Color c) {

@@ -49,7 +49,7 @@ void Chess::printBoard() {
 	}
 }
 
-void Chess::makeMove() {
+bool Chess::makeMove() {
 	std::string color;
 	if (current_color == WHITE) {
 		color = "White";
@@ -58,6 +58,8 @@ void Chess::makeMove() {
 	}
 
 	std::cout << "--- " << color << "\'s turn ---\n" << std::endl;
+
+	// print total number of turns
 
 	printBoard();
 

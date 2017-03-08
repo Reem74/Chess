@@ -9,7 +9,7 @@
 
 Knight::Knight() {
 	current_cell = 0;
-	color = NULL;
+	color = NONE;
 }
 
 Knight::Knight(Cell *cell, Color c) {
