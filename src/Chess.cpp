@@ -8,6 +8,7 @@
 #include "Chess.h"
 
 #include <iostream>
+#include <typeinfo>
 
 Chess::Chess() {
 	board = new Board;
@@ -19,6 +20,7 @@ Chess::~Chess() {
 }
 
 void Chess::play() {
+	// print intro
 	bool checkmate = false;
 	while (!checkmate) {
 		if (makeMove()) {
@@ -36,17 +38,34 @@ void Chess::switchColor() {
 	}
 }
 
+char Chess::getPieceSymbol(Cell* cell) {
+	if (!cell->getPiece()) {
+		return '.';
+	}
+	if (cell->getPiece()->getColor() == BLACK) {
+		return tolower(cell->getPiece()->getName()[0]);
+	}
+	return cell->getPiece()->getName()[0];
+}
+
 void Chess::printBoard() {
 	const int N = 8;
 	char cells[N][N];
 	for (int i = 0; i < N; ++i) {
 		for (int j = 0; j < N; ++j) {
-			cells[i][j] = '.';
+			cells[i][j] = getPieceSymbol(board->getCell(i, j));
 		}
 	}
 	for (int i = 0; i < N; ++i) {
-
+		for (int j = 0; j < N; ++j) {
+			std::cout << cells[i][j];
+			if (j + 1 < N) {
+				std::cout << ' ';
+			}
+		}
+		std::cout << std::endl;
 	}
+	std::cout << std::endl;
 }
 
 bool Chess::makeMove() {
@@ -66,5 +85,5 @@ bool Chess::makeMove() {
 	std::cout << "Choose a piece to move:" << std::endl;
 
 
-
+	return true;
 }

@@ -17,8 +17,9 @@ private:
 	Color current_color;
 
 	void switchColor();
-	bool makeMove();
 	void printBoard();
+	char getPieceSymbol(Cell* cell);
+	bool makeMove();
 public:
 	Chess();
 	~Chess();

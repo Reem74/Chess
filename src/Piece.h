@@ -9,20 +9,30 @@
 #define PIECES_H_
 
 #include "Cell.h"
+#include <string>
+
 #include "Color.h"
 
 class Piece {
 protected:
-	Cell *current_cell;
+	std::string name;
+	Cell* current_cell;
 	Color color;
-public:
+	int *rank_directions;
+	int *file_directions;
+	int n_directions;
+
 	Piece();
-	virtual bool isValidMove(Cell *cell) = 0; /// not here
+	Piece(Cell* cell, Color c);
+public:
 	void setCurrentCell(Cell *cell);
 	void setColor(Color c);
+	std::string getName();
 	Color getColor();
 	Cell* getCurrentCell();
-	virtual ~Piece();
+	int* getRankDirections();
+	int* getFileDirections();
+	~Piece();
 };
 
 #endif /* PIECE_H_ */

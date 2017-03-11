@@ -14,8 +14,10 @@ class Cell {
 private:
 	int rank;
 	char file;
-	Piece *piece;
+	Piece* piece;
+	// need color?
 public:
+	Cell();
 	void setRank(int r);
 	void setFile(char f);
 	void setPiece(Piece *p);

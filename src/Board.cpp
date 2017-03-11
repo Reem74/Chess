@@ -15,45 +15,10 @@
 #include "Queen.h"
 #include "Color.h"
 
-enum {
-	BLACK_PAWN1,
-	BLACK_PAWN2,
-	BLACK_PAWN3,
-	BLACK_PAWN4,
-	BLACK_PAWN5,
-	BLACK_PAWN6,
-	BLACK_PAWN7,
-	BLACK_PAWN8,
-	BLACK_ROOK1,
-	BLACK_ROOK2,
-	BLACK_KNIGHT1,
-	BLACK_KNIGHT2,
-	BLACK_BISHOP1,
-	BLACK_BISHOP2,
-	BLACK_KING,
-	BLACK_QUEEN,
-	WHITE_PAWN1,
-	WHITE_PAWN2,
-	WHITE_PAWN3,
-	WHITE_PAWN4,
-	WHITE_PAWN5,
-	WHITE_PAWN6,
-	WHITE_PAWN7,
-	WHITE_PAWN8,
-	WHITE_ROOK1,
-	WHITE_ROOK2,
-	WHITE_KNIGHT1,
-	WHITE_KNIGHT2,
-	WHITE_BISHOP1,
-	WHITE_BISHOP2,
-	WHITE_KING,
-	WHITE_QUEEN
-
-};
-
 Board::Board() {
 	for (int i = 0; i < N; ++i) {
 		for (int j = 0; j < N; ++j) {
+			cells[i][j] = new Cell;
 			cells[i][j]->setRank(i);
 			cells[i][j]->setFile(j + 'a');
 		}
@@ -101,8 +66,12 @@ Piece** Board::getPieces() {
 	return pieces;
 }
 
+Cell* Board::getCell(int i, int j) {
+	return cells[i][j];
+}
+
 bool Board::move(Piece *piece, Cell *to) {
-	if (!isCaptured(piece) || isValidCell(to) || piece->isValidMove(to)) {
+	if (!isCaptured(piece) || isValidCell(to) || isValidMove(piece, to)) {
 		return false;
 	}
 	if (capture(piece, to)) {
@@ -132,9 +101,7 @@ bool Board::isSameColor(Color color1, Color color2) {
 }
 
 bool Board::isCaptured(Piece *piece) {
-	if (piece->getCurrentCell() == 0)
-		return true;
-	return false;
+	return piece->getCurrentCell() == 0;
 }
 
 bool Board::isValidCell(Cell *cell) {
@@ -145,4 +112,19 @@ bool Board::isValidCell(Cell *cell) {
 		}
 	}
 	return false;
+}
+
+bool Board::isValidMove(Piece *piece, Cell *to) {
+	return false;
+}
+
+Board::~Board() {
+	for (int i = 0; i < 4 * N; ++i) {
+		delete pieces[i];
+	}
+	for (int i = 0; i < N; ++i) {
+		for (int j = 0; j < N; ++j) {
+			delete cells[i][j];
+		}
+	}
 }

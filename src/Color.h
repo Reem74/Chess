@@ -11,4 +11,5 @@
 enum Color {
 	WHITE, BLACK, NONE
 };
+
 #endif /* COLOR_H_ */
