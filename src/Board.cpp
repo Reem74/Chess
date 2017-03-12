@@ -34,31 +34,31 @@ Board::Board() {
 		pieces[i] = new Pawn(cells[1][idx], BLACK);
 	}
 
-	// rooks
-	pieces[WHITE_ROOK1] = new Rook(cells[7][0], WHITE);
-	pieces[WHITE_ROOK2] = new Rook(cells[7][7], WHITE);
-	pieces[BLACK_ROOK1] = new Rook(cells[0][0], BLACK);
-	pieces[BLACK_ROOK2] = new Rook(cells[0][7], BLACK);
-
-	// knights
-	pieces[WHITE_KNIGHT1] = new Knight(cells[7][1], WHITE);
-	pieces[WHITE_KNIGHT2] = new Knight(cells[7][6], WHITE);
-	pieces[BLACK_KNIGHT1] = new Knight(cells[0][1], BLACK);
-	pieces[BLACK_KNIGHT2] = new Knight(cells[0][6], BLACK);
-
-	// bishops
-	pieces[WHITE_BISHOP1] = new Bishop(cells[7][2], WHITE);
-	pieces[WHITE_BISHOP2] = new Bishop(cells[7][5], WHITE);
-	pieces[BLACK_BISHOP1] = new Bishop(cells[0][2], BLACK);
-	pieces[BLACK_BISHOP2] = new Bishop(cells[0][5], BLACK);
-
-	// kings
-	pieces[WHITE_KING] = new King(cells[7][4], WHITE);
-	pieces[BLACK_KING] = new King(cells[0][3], BLACK);
-
-	// queens
-	pieces[WHITE_QUEEN] = new Queen(cells[7][3], WHITE);
-	pieces[BLACK_QUEEN] = new Queen(cells[0][4], BLACK);
+//	// rooks
+//	pieces[WHITE_ROOK1] = new Rook(cells[7][0], WHITE);
+//	pieces[WHITE_ROOK2] = new Rook(cells[7][7], WHITE);
+//	pieces[BLACK_ROOK1] = new Rook(cells[0][0], BLACK);
+//	pieces[BLACK_ROOK2] = new Rook(cells[0][7], BLACK);
+//
+//	// knights
+//	pieces[WHITE_KNIGHT1] = new Knight(cells[7][1], WHITE);
+//	pieces[WHITE_KNIGHT2] = new Knight(cells[7][6], WHITE);
+//	pieces[BLACK_KNIGHT1] = new Knight(cells[0][1], BLACK);
+//	pieces[BLACK_KNIGHT2] = new Knight(cells[0][6], BLACK);
+//
+//	// bishops
+//	pieces[WHITE_BISHOP1] = new Bishop(cells[7][2], WHITE);
+//	pieces[WHITE_BISHOP2] = new Bishop(cells[7][5], WHITE);
+//	pieces[BLACK_BISHOP1] = new Bishop(cells[0][2], BLACK);
+//	pieces[BLACK_BISHOP2] = new Bishop(cells[0][5], BLACK);
+//
+//	// kings
+//	pieces[WHITE_KING] = new King(cells[7][4], WHITE);
+//	pieces[BLACK_KING] = new King(cells[0][3], BLACK);
+//
+//	// queens
+//	pieces[WHITE_QUEEN] = new Queen(cells[7][3], WHITE);
+//	pieces[BLACK_QUEEN] = new Queen(cells[0][4], BLACK);
 
 }
 
@@ -70,52 +70,61 @@ Cell* Board::getCell(int i, int j) {
 	return cells[i][j];
 }
 
+bool Board::isValidCellString(std::string cell) {
+	for (size_t i = 0; i < cell.size(); ++i) {
+		if (cell[i] == ' ') {
+			cell.erase(i, 1);
+			--i;
+		}
+	}
+	return ('a' <= cell[0] && cell[0] <= 'h') && ('1' <= cell[1] && cell[1] <= '9');
+}
+#include <iostream>
+bool Board::move(Color move_color, std::string from, std::string to) {
+	from[1] = N + '1' - from[1] + '1' - 1;
+	to[1] = N + '1' - to[1] + '1' - 1;
+	return isValidCellString(from) && isValidCellString(to) &&
+			cells[from[1] - '1'][from[0] - 'a']->getPiece() &&
+			cells[from[1] - '1'][from[0] - 'a']->getPiece()->getColor() == move_color &&
+			move(cells[from[1] - '1'][from[0] - 'a']->getPiece(), cells[to[1] - '1'][to[0] - 'a']);
+}
+
 bool Board::move(Piece *piece, Cell *to) {
-	if (!isCaptured(piece) || isValidCell(to) || isValidMove(piece, to)) {
+	// I think isCaptured() is redundant
+	if (isCaptured(piece) || !isValidMove(piece, to) || !capture(piece, to)) {
 		return false;
 	}
-	if (capture(piece, to)) {
-		return false;
-	}
-	piece->getCurrentCell()->setRank(0);
-	piece->getCurrentCell()->setFile(0);
-	piece->setCurrentCell(to);
+	piece->changeCurrentCell(to);
 	return true;
 }
 
-bool Board::capture(Piece *piece, Cell *to) {
-	if (isSameColor(piece->getColor(), to->getPiece()->getColor())) {
+bool Board::isValidMove(Piece *piece, Cell *to) {
+
+	return true;
+}
+
+bool Board::capture(Piece *piece, Cell *captured_cell) {
+	if (captured_cell->getPiece() == 0) {
+		return true;
+	}
+	if (isSameColor(piece, captured_cell->getPiece())) {
 		return false;
 	}
-	for (int i = 0; i < N * N; i++) {
+	for (int i = 0; i < 4 * N; i++) {
 		if (pieces[i] == piece) {
-			piece->getCurrentCell()->setPiece(0);
-			piece->setCurrentCell(0);
+			piece->changeCurrentCell(0);
+			break;
 		}
 	}
 	return true;
-}
-
-bool Board::isSameColor(Color color1, Color color2) {
-	return color1 == color2;
 }
 
 bool Board::isCaptured(Piece *piece) {
 	return piece->getCurrentCell() == 0;
 }
 
-bool Board::isValidCell(Cell *cell) {
-	for (int i = 0; i < N; i++) {
-		for (int j = 0; j < N; j++) {
-			if (cell == cells[i][j])
-				return true;
-		}
-	}
-	return false;
-}
-
-bool Board::isValidMove(Piece *piece, Cell *to) {
-	return false;
+bool Board::isSameColor(Piece *piece1, Piece *piece2) {
+	return piece1->getColor() == piece2->getColor();
 }
 
 Board::~Board() {

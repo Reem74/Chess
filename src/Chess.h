@@ -15,11 +15,12 @@ class Chess {
 private:
 	Board* board;
 	Color current_color;
+	int number_of_moves;
 
 	void switchColor();
 	void printBoard();
 	char getPieceSymbol(Cell* cell);
-	bool makeMove();
+	void makeMove();
 public:
 	Chess();
 	~Chess();

@@ -8,7 +8,6 @@
 #include "Chess.h"
 
 #include <iostream>
-#include <typeinfo>
 
 Chess::Chess() {
 	board = new Board;
@@ -20,14 +19,20 @@ Chess::~Chess() {
 }
 
 void Chess::play() {
-	// print intro
-	bool checkmate = false;
-	while (!checkmate) {
-		if (makeMove()) {
+	std::cout << "Welcome to R.M. Chess 1.0!" << std::endl;
 
-		}
+	bool gameOver = false;
+	while (!gameOver) {
+		std::cout << "\nMove #" << number_of_moves + 1 << std::endl;
+		std::cout << "\n--- " << (current_color == WHITE ? "White" : "Black") << "\'s turn ---\n" << std::endl;
+
+		printBoard();
+		makeMove();
+
 		switchColor();
 	}
+
+	std::cout << "\nGame Over!\n" << std::endl;
 }
 
 void Chess::switchColor() {
@@ -57,33 +62,36 @@ void Chess::printBoard() {
 		}
 	}
 	for (int i = 0; i < N; ++i) {
+		std::cout << N - i << '|';
 		for (int j = 0; j < N; ++j) {
-			std::cout << cells[i][j];
-			if (j + 1 < N) {
-				std::cout << ' ';
-			}
+			std::cout << ' ' << cells[i][j];
 		}
 		std::cout << std::endl;
 	}
-	std::cout << std::endl;
+	std::cout << "   ---------------\n   ";
+	for (int i = 0; i < N; ++i) {
+		std::cout << (char)('a' + i);
+		if (i + 1 < N) {
+			std::cout << ' ';
+		}
+	}
+	std::cout << std::endl << std::endl;
 }
 
-bool Chess::makeMove() {
-	std::string color;
-	if (current_color == WHITE) {
-		color = "White";
-	} else {
-		color = "Black";
+void Chess::makeMove() {
+	while (true) {
+		std::cout << "Choose the cell of the piece you want to move:" << std::endl;
+		std::string from;
+		getline(std::cin, from);
+
+		std::cout << "Choose the cell you want to move the piece to:" << std::endl;
+		std::string to;
+		getline(std::cin, to);
+
+		if (board->move(current_color, from, to)) {
+			break;
+		}
+		std::cout << "\nError. Invalid move.\n" << std::endl;
 	}
-
-	std::cout << "--- " << color << "\'s turn ---\n" << std::endl;
-
-	// print total number of turns
-
-	printBoard();
-
-	std::cout << "Choose a piece to move:" << std::endl;
-
-
-	return true;
+	++number_of_moves;
 }

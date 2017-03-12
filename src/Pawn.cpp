@@ -17,7 +17,20 @@ Pawn::Pawn() {
 Pawn::Pawn(Cell *cell, Color c) : Piece(cell, c) {
 	name = "Pawn";
 	starting_cell = cell;
-	// directions and n_directions
+
+	n_directions = 2;
+	rank_directions = new int[2];
+	file_directions = new int[2];
+
+	rank_directions[0] = -1;
+	file_directions[0] = 0;
+
+	rank_directions[0] = -1;
+	file_directions[0] = -1;
+
+	rank_directions[0] = -1;
+	file_directions[0] = 1;
+
 }
 
 Cell *Pawn::getStartingCell() {

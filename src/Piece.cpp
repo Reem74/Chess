@@ -10,9 +10,9 @@
 Piece::Piece() {
 	current_cell = 0;
 	color = NONE;
+	n_directions = 0;
 	rank_directions = 0;
 	file_directions = 0;
-	n_directions = 0;
 }
 
 Piece::Piece(Cell* cell, Color c) {
@@ -21,8 +21,14 @@ Piece::Piece(Cell* cell, Color c) {
 	cell->setPiece(this);
 }
 
-void Piece::setCurrentCell(Cell *cell) {
+void Piece::changeCurrentCell(Cell *cell) {
+	if (current_cell) {
+		current_cell->setPiece(0);
+	}
 	current_cell = cell;
+	if (current_cell) {
+		current_cell->setPiece(this);
+	}
 }
 
 void Piece::setColor(Color c) {

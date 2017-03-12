@@ -14,10 +14,6 @@
 
 class Board {
 private:
-	static const int N = 8;
-	Piece* pieces[4 * N];
-	Cell* cells[N][N];
-
 	enum {
 		BLACK_PAWN1,
 		BLACK_PAWN2,
@@ -52,16 +48,22 @@ private:
 		WHITE_KING,
 		WHITE_QUEEN
 	};
+
+	static const int N = 8;
+	Piece* pieces[4 * N];
+	Cell* cells[N][N];
+
+	bool isValidCellString(std::string cell);
+	bool move(Piece *piece, Cell *to);
+	bool isValidMove(Piece *piece, Cell *to);
+	bool capture(Piece *piece, Cell *captured_cell);
+	bool isCaptured(Piece *piece);
+	bool isSameColor(Piece *piece1, Piece *piece2);
 public:
 	Board();
 	Piece** getPieces();
 	Cell* getCell(int i, int j);
-	bool move(Piece *piece, Cell *to);
-	bool isValidCell(Cell *cell);
-	bool isValidMove(Piece *piece, Cell *to);
-	bool capture(Piece *piece, Cell *to);
-	bool isCaptured(Piece *piece);
-	bool isSameColor(Color color1, Color color2);
+	bool move(Color move_color, std::string from, std::string to);
 	~Board();
 };
 
