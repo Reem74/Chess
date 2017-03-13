@@ -16,7 +16,7 @@ private:
 public:
 	Pawn();
 	Pawn(Cell *cell, Color c);
-	Cell *getStartingCell();
+	virtual bool isValidMove(Board *board, Cell *to);
 };
 
 #endif /* PAWN_H_ */

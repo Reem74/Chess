@@ -55,7 +55,7 @@ private:
 
 	bool isValidCellString(std::string cell);
 	bool move(Piece *piece, Cell *to);
-	bool isValidMove(Piece *piece, Cell *to);
+//	bool isValidMove(Piece *piece, Cell *to);
 	bool capture(Piece *piece, Cell *captured_cell);
 	bool isCaptured(Piece *piece);
 	bool isSameColor(Piece *piece1, Piece *piece2);

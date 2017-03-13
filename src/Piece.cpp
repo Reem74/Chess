@@ -47,14 +47,6 @@ Cell* Piece::getCurrentCell() {
 	return current_cell;
 }
 
-int* Piece::getFileDirections() {
-	return file_directions;
-}
-
-int* Piece::getRankDirections() {
-	return rank_directions;
-}
-
 Piece::~Piece() {
 	delete current_cell;
 	delete[] rank_directions;

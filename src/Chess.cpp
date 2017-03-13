@@ -27,7 +27,10 @@ void Chess::play() {
 		std::cout << "\n--- " << (current_color == WHITE ? "White" : "Black") << "\'s turn ---\n" << std::endl;
 
 		printBoard();
-		makeMove();
+
+		if (!makeMove()) {
+			return;
+		}
 
 		switchColor();
 	}
@@ -78,11 +81,15 @@ void Chess::printBoard() {
 	std::cout << std::endl << std::endl;
 }
 
-void Chess::makeMove() {
+bool Chess::makeMove() {
 	while (true) {
 		std::cout << "Choose the cell of the piece you want to move:" << std::endl;
 		std::string from;
 		getline(std::cin, from);
+
+		if (from == "exit") {
+			return false;
+		}
 
 		std::cout << "Choose the cell you want to move the piece to:" << std::endl;
 		std::string to;
@@ -94,4 +101,5 @@ void Chess::makeMove() {
 		std::cout << "\nError. Invalid move.\n" << std::endl;
 	}
 	++number_of_moves;
+	return true;
 }

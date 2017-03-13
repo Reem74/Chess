@@ -79,7 +79,7 @@ bool Board::isValidCellString(std::string cell) {
 	}
 	return ('a' <= cell[0] && cell[0] <= 'h') && ('1' <= cell[1] && cell[1] <= '9');
 }
-#include <iostream>
+
 bool Board::move(Color move_color, std::string from, std::string to) {
 	from[1] = N + '1' - from[1] + '1' - 1;
 	to[1] = N + '1' - to[1] + '1' - 1;
@@ -91,15 +91,10 @@ bool Board::move(Color move_color, std::string from, std::string to) {
 
 bool Board::move(Piece *piece, Cell *to) {
 	// I think isCaptured() is redundant
-	if (isCaptured(piece) || !isValidMove(piece, to) || !capture(piece, to)) {
+	if (isCaptured(piece) || !piece->isValidMove(this, to) || !capture(piece, to)) {
 		return false;
 	}
 	piece->changeCurrentCell(to);
-	return true;
-}
-
-bool Board::isValidMove(Piece *piece, Cell *to) {
-
 	return true;
 }
 

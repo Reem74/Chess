@@ -20,7 +20,7 @@ private:
 	void switchColor();
 	void printBoard();
 	char getPieceSymbol(Cell* cell);
-	void makeMove();
+	bool makeMove();
 public:
 	Chess();
 	~Chess();

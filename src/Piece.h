@@ -8,10 +8,12 @@
 #ifndef PIECES_H_
 #define PIECES_H_
 
-#include "Cell.h"
 #include <string>
 
+#include "Cell.h"
 #include "Color.h"
+
+class Board;
 
 class Piece {
 protected:
@@ -33,9 +35,8 @@ public:
 	std::string getName();
 	Color getColor();
 	Cell* getCurrentCell();
-	int* getRankDirections();
-	int* getFileDirections();
-	~Piece();
+	virtual bool isValidMove(Board *board, Cell *to) = 0;
+	virtual ~Piece();
 };
 
 #endif /* PIECE_H_ */
