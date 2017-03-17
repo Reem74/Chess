@@ -1,2 +1,2 @@
 # Chess
-A simple chess game in C++
+A simple console-based chess game in C++
